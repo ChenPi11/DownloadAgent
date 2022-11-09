@@ -1,0 +1,3 @@
+socket2.openfileabort="The outher side is error in opening file"
+socket2.sendfileabort="Receiver is aborted receiving"
+socket2.recvfileabort="Sender is aborted sending"

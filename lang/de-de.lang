@@ -1,0 +1,3 @@
+socket2.openfileabort="Beim Öffnen der Datei durch die andere Partei ist ein Fehler aufgetreten"
+socket2.sendfileabort="Der Empfänger beendete den Empfang"
+socket2.recvfileabort="Der Absender beendete die Übertragung"

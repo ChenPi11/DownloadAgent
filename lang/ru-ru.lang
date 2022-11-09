@@ -1,0 +1,3 @@
+socket2.openfileabort="Ошибка открытия файла"
+socket2.sendfileabort="получатель прекратил прием"
+socket2.recvfileabort="отправитель прекратил отправку"

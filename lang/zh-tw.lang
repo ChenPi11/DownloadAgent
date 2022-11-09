@@ -1,0 +1,3 @@
+socket2.openfileabort="對方打開文件時出錯"
+socket2.sendfileabort="接收方終止了接收"
+socket2.recvfileabort="發送方終止了發送"
