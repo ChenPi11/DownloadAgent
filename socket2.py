@@ -136,6 +136,7 @@ def getLogger(name="SYSTEM",file=default_file,format="[{lvl} {name} {time}] {msg
         l=Logger(name,file=file,flush=flush,format=format)
         return l
 #--------------------------------------------------缩减版socket2外加修复bug-----------------------------
+import pickle
 from threading import *
 import socket,ctypes
 class SocketError(socket.error):
@@ -209,7 +210,7 @@ class socket2:
         self.log.info("Connected:"+str(self.addr)+",fd="+str(self.sk.fileno()))
     def accept(self):
         sk,addr=self.sk.accept()
-        r=socket2(log=self.log,c=sk,addr=addr)
+        r=socket2(log=self.log,c=sk,addr=addr,key=pubkey)
         sputf=skrecv(sk,len(_Socket2Commands.ok))==_Socket2Commands.ok
         if(sputf):
             r.encoding="utf-8"
@@ -223,7 +224,7 @@ class socket2:
             data=data.encode(self.encoding)
             ph=siz8(len(data))
             sksend(self.sk,ph)
-            sksend(self.sk,data)
+            sksend(pickle.dumps(self.sk,data))
         except(ConnectionRefusedError,SocketClosedError):
             self.close()
             raise
@@ -231,7 +232,7 @@ class socket2:
         try:
             _=skrecv(self.sk,8)
             ph=dsiz(_)
-            dt=skrecv(self.sk,ph)
+            dt=pickle.loads(skrecv(self.sk,ph))
             if(abs(len(dt)-ph)):
                 self.log.warn("OVERFLOW")
             try:

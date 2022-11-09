@@ -5,11 +5,7 @@ Created on Sat Oct 23 13:54:39 2021
 @author: huyi
 """
 
-import os
-import sys
-
-import requests,queue
-import urllib3
+import os,sys,requests,queue,urllib3
 import urllib.parse
 http = urllib3.PoolManager(num_pools=50)
 def check_httpcode(c:int):
